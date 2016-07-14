@@ -1,0 +1,158 @@
+@import url(http://fonts.googleapis.com/css?family=Raleway:400,100);
+
+body {
+	background: #000;
+	font-family: 'Raleway', sans-serif;
+	font-weight: 100;
+	margin: 0;
+	padding: 0;
+}
+
+#canvas {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+}
+canvas {
+z-index:200;
+	background-color: #000;
+	display: block;
+        height:100%;
+        width:100%;
+}
+
+.tag{
+z-index:999;
+position:absolute;
+color:white;
+text-align:center;
+width:100%;
+font-size: 2em;
+
+}
+.logo{
+z-index:-999;
+position:absolute;
+top:0;
+right:0;
+text-align:center;
+color:white;
+
+}
+.logo img {
+diplay:block;
+
+}
+.info{
+z-index:999;
+position:absolute;
+bottom:0;
+left:5px;
+color:white;
+}
+.info h3{
+color:white;
+}
+
+/* message */
+.kisst {
+	font-size: 2em;
+	color: #fff;
+	position: absolute;
+	left: 10%;
+	top: 45%;
+        z-index:222;
+        
+}
+.kiss {
+	font-size: 4em;
+	text-transform: uppercase;
+	color: #fff;
+	position: absolute;
+	left: 10%;
+	top: 30%;
+        z-index:222;
+        background-color:black;
+}
+.message {
+        z-index:100;
+	font-size: 4em;
+	text-transform: uppercase;
+	color: #fff;
+	position: absolute;
+	left: 10%;
+	top: 30%;
+}
+
+/* ladki and motion animations */
+.ladki_box {
+        z-index:999;
+	position: absolute;
+	height: 337px;
+	width: 272px;
+	top: 45%;
+	left: calc(50% - 175px);
+	//border: 1px solid black;	
+}
+.ladki {
+	position: absolute;
+	height: 337px;
+	-webkit-transform-origin: center;
+	//animation-name: fly;
+	//animation-duration: 10s;
+	//border: 1px solid white;
+        color:white;
+        text-align:center;
+}
+.ladki h3 {
+
+-webkit-margin-before: -10px;
+
+}
+
+@keyframes fly {
+	from {
+		transform: translate(0,0) rotate(0deg);
+	}
+	50% {
+		transform: translate(300px, 300px) rotate(180deg);
+	}
+	to {
+		transform: translate(0px, 500px) rotate(300deg);
+	}	
+}
+
+.girl
+{
+background: url(girl.png);
+height:100%;
+width:100%;
+
+}
+.cherukkan
+{
+position:absolute;
+right:0;
+bottom:0px;
+text-align:center;
+}
+.cherukkan h3
+{
+color:white;
+}
+.cherukkan img 
+{
+display:block;
+margin:0;
+}
+@keyframes flap {
+	from {
+		transform: none;
+	}
+	50% {
+		transform: rotateY(80deg);
+	}
+	to {
+		transform: none;
+	}
+}	
