@@ -69,7 +69,7 @@
 		analyser.getByteTimeDomainData(freqDomain);
 		var pitch;
 		window.setInterval(function(){
-			array = new Uint8Array(2048);
+			array = new Float32Array(2048);
 			analyser.getByteTimeDomainData(array);
 
 			pitch = autoCorrelate(array, context.sampleRate)
