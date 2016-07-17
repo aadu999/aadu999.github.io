@@ -21,7 +21,7 @@
 	var context = new window.AudioContext();
 	navigator.getUserMedia({audio: true}, gotUserAudio, userAudioDenied);
 	var aadu=0;
-	var tim_buff = new Unit8Array(512);
+	var tim_buff = new Uint8Array(512);
 	function autoCorrelate(buf, sampleRate) {
 		var MIN_SAMPLES = 4;
 		var MAX_SAMPLES = 1000;
