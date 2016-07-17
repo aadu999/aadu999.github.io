@@ -66,10 +66,10 @@
 		var analyser = context.createAnalyser();
 		microphone.connect(analyser);
 		var freqDomain = new Float32Array(analyser.frequencyBinCount);
-		analyser.getByteTimeDomainData(freqDomain);
+		analyser.getByteTimeDomainData(512);
 		var pitch;
 		window.setInterval(function(){
-			array = new Uint8Array(512);
+			array = new Uint8Array(2048);
 			analyser.getByteTimeDomainData(array);
 
 			pitch = autoCorrelate(array, context.sampleRate)
