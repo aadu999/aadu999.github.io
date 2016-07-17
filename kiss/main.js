@@ -21,6 +21,7 @@
 	var context = new window.AudioContext();
 	navigator.getUserMedia({audio: true}, gotUserAudio, userAudioDenied);
 	var aadu=0;
+	var tim_buff = new Unit8Array(512);
 	function autoCorrelate(buf, sampleRate) {
 		var MIN_SAMPLES = 4;
 		var MAX_SAMPLES = 1000;
@@ -66,7 +67,7 @@
 		var analyser = context.createAnalyser();
 		microphone.connect(analyser);
 		var freqDomain = new Float32Array(analyser.frequencyBinCount);
-		analyser.getByteTimeDomainData(512);
+		analyser.getByteTimeDomainData(tim_buff);
 		var pitch;
 		window.setInterval(function(){
 			array = new Uint8Array(2048);
