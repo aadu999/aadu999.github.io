@@ -1,0 +1,163 @@
+<html ><head>
+  <meta charset="UTF-8">
+ 
+  <title>SiHome Home AUtomation</title>
+
+      <style>
+      @import url(https://fonts.googleapis.com/css?family=Slabo+27px);
+.centerthis {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  font-size: 30px;
+  font-weight: bold;
+}
+h3 {
+  font-size: 7.5vmin;
+  margin-top: 0;
+  margin-bottom: 1vmin;
+}
+header {
+  font-size: 4.5vmin;
+}
+#userInput {
+  border: 0.5vmin solid black;
+  border-radius: 0.5rem;
+  width: 86vmin;
+  height: 26vmin;
+  font-family: 'Slabo 27px', serif;
+  font-size: 3.7vmin;
+  line-height: 5.1vmin;
+  letter-spacing: 0.1vmin;
+  padding: 0 0.3vmin;
+  overflow-y: scroll;
+}
+#userInput:active,
+#userInput:focus {
+  outline: none;
+}
+
+    </style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+  
+  
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+</head>
+
+<body translate="no">
+
+  <div class="centerthis">
+  <h3>Say this: "What can I say"</h3>
+  <header>
+    <p>Speech sythesis is  supported by your browser</p>
+  </header>
+  <div id="userInput" contenteditable="true">You can say turn on device name. For example "Turn on Bulb". To turn of you can say "turn off device name". For example "Turn off Bulb". </div>
+
+  <template id="tmpl_speech_synth_support">
+    <p>Speech sythesis is {{support}} supported by your browser</p>
+  </template>
+</div>
+    
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/1.5.0/annyang.min.js"></script>
+
+    <script>
+    (function() {
+  'use strict';
+  
+  var recitePoem = function() {
+    var msg = new SpeechSynthesisUtterance($('#userInput').text());
+    window.speechSynthesis.speak(msg);
+    $.ajax({url: "http://sihome.ddns.net:8080/remote?action=SHOW_ALERT&type=alert&title=You%20can%20say%20turn%20on%20device%20name.%20For%20example%20%22Turn%20on%20Bulb%22.%20To%20turn%20of%20you%20can%20say%20%22turn%20off%20device%20name%22.%20For%20example%20%22Turn%20off%20Bulb%22.&message=%20&timer=6", success: function(result){
+                var msg = new SpeechSynthesisUtterance('OKey! Turning on the Bulb.');
+                window.speechSynthesis.speak(msg);
+               }});
+
+  };
+  
+  if (annyang) {
+    var commands = {
+      'what can i say': function() {
+        recitePoem();
+      },
+      'bulb on karo': function(){
+               $.ajax({url: "https://io.adafruit.com/api/groups/light/send.json?x-aio-key=67c638155ec84ce4b3ea4c3aaff1b745&bulb=1", success: function(result){
+                var msg = new SpeechSynthesisUtterance('OKey! Turning on the Bulb.');
+                window.speechSynthesis.speak(msg);
+               }});
+      },
+      'turn on bulb': function(){
+               $.ajax({url: "https://io.adafruit.com/api/groups/light/send.json?x-aio-key=67c638155ec84ce4b3ea4c3aaff1b745&bulb=1", success: function(result){
+                  $.ajax({url: "https://hrishikesnsriji.herokuapp.com/alert.php?status=bulb-on", success: function(result){
+                 }});
+                var msg = new SpeechSynthesisUtterance('OKey! Turning on the Bulb.');
+                window.speechSynthesis.speak(msg);
+               }});
+      },
+      'turn off bulb': function(){
+               $.ajax({url: "https://io.adafruit.com/api/groups/light/send.json?x-aio-key=67c638155ec84ce4b3ea4c3aaff1b745&bulb=0", success: function(result){
+                  $.ajax({url: "https://hrishikesnsriji.herokuapp.com/alert.php?status=bulb-off", success: function(result){
+                 }});
+                var msg = new SpeechSynthesisUtterance('OKey! Turning off the Bulb.');
+                window.speechSynthesis.speak(msg);
+               }});
+      },
+      'turn off fan': function(){
+               $.ajax({url: "https://io.adafruit.com/api/groups/light/send.json?x-aio-key=67c638155ec84ce4b3ea4c3aaff1b745&fan=0", success: function(result){
+                  $.ajax({url: "https://hrishikesnsriji.herokuapp.com/alert.php?status=fan-off", success: function(result){
+                 }});
+                var msg = new SpeechSynthesisUtterance('OKey! Turning off fan.');
+                window.speechSynthesis.speak(msg);
+    }});
+      },
+      'turn on fan': function(){
+               $.ajax({url: "https://io.adafruit.com/api/groups/light/send.json?x-aio-key=67c638155ec84ce4b3ea4c3aaff1b745&fan=1", success: function(result){
+                  $.ajax({url: "https://hrishikesnsriji.herokuapp.com/alert.php?status=fan-on", success: function(result){
+                 }});
+                var msg = new SpeechSynthesisUtterance('OKey! Turning on fan.');
+                window.speechSynthesis.speak(msg);
+    }});
+      },
+      'turn on tube': function(){
+               $.ajax({url: "https://io.adafruit.com/api/groups/light/send.json?x-aio-key=67c638155ec84ce4b3ea4c3aaff1b745&tube=1", success: function(result){
+                  $.ajax({url: "https://hrishikesnsriji.herokuapp.com/alert.php?status=tube-on", success: function(result){
+                 }});
+                var msg = new SpeechSynthesisUtterance('OKey! Turning on tube light.');
+                window.speechSynthesis.speak(msg);
+    }});
+      },
+      'turn off tube': function(){
+               $.ajax({url: "https://io.adafruit.com/api/groups/light/send.json?x-aio-key=67c638155ec84ce4b3ea4c3aaff1b745&tube=0", success: function(result){
+                  $.ajax({url: "https://hrishikesnsriji.herokuapp.com/alert.php?status=bulb-off", success: function(result){
+                 }});
+                var msg = new SpeechSynthesisUtterance('OKey! Turning off tube.');
+                window.speechSynthesis.speak(msg);
+    }});
+      }
+    };
+
+    
+    annyang.addCommands(commands);
+    annyang.start();
+
+  }
+  
+  $(function() {
+    var tmpl = Handlebars.compile($('#tmpl_speech_synth_support').html());
+    $('header').html(tmpl({
+      support: !!window.speechSynthesis ? '' : 'not'
+    }));
+  });
+}());
+  </script>
+ </body></html>
