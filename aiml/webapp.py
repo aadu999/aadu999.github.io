@@ -10,7 +10,7 @@ app = Flask(__name__,static_folder='public')
 
 @app.route('/')
 def index():
-    dataset =pd.read_csv('Salary_Data.csv')
+    dataset =pd.read_csv('Salary_Data.csv') #use the correct data set
     x=dataset.iloc[:,:-1].values
     y=dataset.iloc[:,1].values
     X_train, X_test, Y_train, Y_test=train_test_split(x,y,test_size=1/3,random_state=0)
